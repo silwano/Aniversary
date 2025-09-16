@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-out;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #d64a72;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: colorChange 8s infinite alternate;
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff5a8c' width='24px' height='24px'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+            opacity: 0;
+            animation: fallDown 10s linear infinite;
+        }
+        
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        .photo-frame img{
+            width: 300px;
+            position: absolute;
+            right: 3px;
+        }
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .button {
+            background: linear-gradient(to right, #ff5e62, #ff9966);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 94, 98, 0.6);
+        }
+        
+        .button:active {
+            transform: translateY(1px);
+        }
+        
+        .counter {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #777;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes colorChange {
+            0% { color: #d64a72; }
+            25% { color: #6a5acd; }
+            50% { color: #20b2aa; }
+            75% { color: #daa520; }
+            100% { color: #ff6b6b; }
+        }
+        
+        @keyframes fallDown {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .message {
+                font-size: 1.2rem;
+            }
+            
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="hearts-container"></div>
+    
+    <div class="container">
+        <h1 id="main-title">Happy Anniversary!</h1>
+        
+        <div class="photo-frame">
+            <div class="photo-placeholder">
+                <img src="image.jpg" alt="image">
+            </div>
+        </div>
+        
+        <p class="message" id="anniversary-message">
+            To the love of my life, every day with you is a blessing. 
+            Here's to many more years of laughter, love, and happiness together!
+        </p>
+        
+        <button class="button" id="surprise-btn">Click for a Surprise!</button>
+        
+        <div class="counter">
+            <p>Together for: <span id="days-counter">0</span> days</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position and animation delay
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Calculate days together
+        function calculateDaysTogether() {
+            // Set your anniversary date here (format: Year, Month-1, Day)
+            const anniversaryDate = new Date(2025, 7, 16); // Example: August 15, 2020
+            const today = new Date();
+            const timeDiff = today.getTime() - anniversaryDate.getTime();
+            const daysTogether = Math.floor(timeDiff / (1000 * 3600 * 24));
+            
+            document.getElementById('days-counter').textContent = daysTogether;
+        }
+        
+        // Surprise button effect
+        function setupSurpriseButton() {
+            const button = document.getElementById('surprise-btn');
+            const title = document.getElementById('main-title');
+            const message = document.getElementById('anniversary-message');
+            
+            const messages = [
+                "I fall in love with you more every day!",
+                "You're the best thing that ever happened to me!",
+                "My heart belongs to you, now and forever!",
+                "Every moment with you is a treasure!",
+                "I would choose you over and over again!"
+            ];
+            
+            let currentMessage = 0;
+            
+            button.addEventListener('click', function() {
+                // Change message
+                message.textContent = messages[currentMessage];
+                currentMessage = (currentMessage + 1) % messages.length;
+                
+                // Create burst effect
+                createBurst();
+                
+                // Animate button
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 100);
+            });
+        }
+        
+        // Create burst effect for surprise button
+        function createBurst() {
+            const burstContainer = document.createElement('div');
+            burstContainer.style.position = 'fixed';
+            burstContainer.style.top = '0';
+            burstContainer.style.left = '0';
+            burstContainer.style.width = '100%';
+            burstContainer.style.height = '100%';
+            burstContainer.style.pointerEvents = 'none';
+            burstContainer.style.zIndex = '100';
+            
+            document.body.appendChild(burstContainer);
+            
+            // Create burst elements
+            const burstCount = 20;
+            const colors = ['#ff5a8c', '#6a5acd', '#20b2aa', '#daa520', '#ff6b6b'];
+            
+            for (let i = 0; i < burstCount; i++) {
+                const burst = document.createElement('div');
+                burst.classList.add('heart');
+                burst.style.position = 'absolute';
+                burst.style.top = '50%';
+                burst.style.left = '50%';
+                burst.style.width = '30px';
+                burst.style.height = '30px';
+                burst.style.background = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='${colors[i % colors.length]}' width='24px' height='24px'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center`;
+                burst.style.backgroundSize = 'contain';
+                
+                // Random direction and distance
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 100 + Math.random() * 200;
+                const duration = 800 + Math.random() * 500;
+                
+                // Animate burst
+                burst.animate([
+                    { 
+                        transform: 'translate(-50%, -50%) scale(1)',
+                        opacity: 1
+                    },
+                    { 
+                        transform: `translate(
+                            ${-50 + Math.cos(angle) * distance}%, 
+                            ${-50 + Math.sin(angle) * distance}%
+                        ) scale(0.5)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: duration,
+                    easing: 'ease-out'
+                });
+                
+                burstContainer.appendChild(burst);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    burst.remove();
+                }, duration);
+            }
+            
+            // Remove container after animation completes
+            setTimeout(() => {
+                burstContainer.remove();
+            }, 1500);
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            calculateDaysTogether();
+            setupSurpriseButton();
+        });
+    </script>
+</body>
+</html>
